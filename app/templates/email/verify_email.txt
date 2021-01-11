@@ -1,8 +1,8 @@
-Hi there!
+Hi!
 
-We just need to verify you email so you can start using Mega Duper App! Click on the following link:
+We have to verify your email so your referrals will start moving you up InLine! 
 
 {{ url_for('main.verify_email', token=token, _external=True) }}
 
 Thanks
-The Mega Duper App team
+The InLine team
