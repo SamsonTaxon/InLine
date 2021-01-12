@@ -10,10 +10,8 @@ from app import myemail
 from app import utils
 from app.forms import EmailForm
 
-
 webapp_bp = Blueprint('main', __name__)
 error_bp = Blueprint('errors', __name__)
-
 
 @webapp_bp.route('/', methods=['POST', 'GET'])
 def index():

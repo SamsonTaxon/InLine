@@ -5,8 +5,7 @@ from wtforms.validators import DataRequired
 from wtforms.validators import Email
 
 class EmailForm(FlaskForm):
-    # email = EmailField('Email', validators=[DataRequired(), Email()])
-    email = EmailField('Email', validators=[DataRequired()])
+    email = EmailField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Get Nline')
 
 class PhoneForm(FlaskForm):
