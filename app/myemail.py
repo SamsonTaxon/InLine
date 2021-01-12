@@ -7,11 +7,9 @@ from flask_mail import Message
 from app import utils
 from app.extensions import mail
 
-
 def _send_async(app, msg):
     with app.app_context():
         mail.send(msg)
-
 
 def send(subject, sender, recipients, text_body, html_body):
     msg = Message(subject, sender=sender, recipients=recipients)
@@ -20,12 +18,10 @@ def send(subject, sender, recipients, text_body, html_body):
     Thread(target=_send_async,
            args=(current_app._get_current_object(), msg)).start()
 
-
 def send_from_default(subject, recipients, text_body, html_body):
     send(subject,
          current_app._get_current_object().config['MAIL_USERNAME'],
          recipients, text_body, html_body)
-
 
 def send_verification_email(user_id, user_email, referring_uuid=''):
     payload = {
