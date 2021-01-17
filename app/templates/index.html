@@ -14,8 +14,6 @@
         {{ form.email(class_='input',
                       placeholder='Your best email…',
                       pattern='(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)',
-                      required='required',
-                      oninvalid="this.setCustomValidity('Please enter a valid email address.')",
                       onchange="try{setCustomValidity('')}catch(e){}") }}
       </div>
       {{ form.submit(class_='btn btn-primary mb-2') }}
