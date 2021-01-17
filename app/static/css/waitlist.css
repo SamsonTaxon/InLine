@@ -13,7 +13,7 @@ body {
   font-family: 'Poppins',sans-serif;
   font-weight: 300;
   height: 100vh;
-  background-image: url(/static/img/slide-deck.png);
+  background-image: url('/static/img/slide-deck.png');
   background-size: cover;
   color: var(--color-white);
   display: -webkit-box;
