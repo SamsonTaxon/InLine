@@ -108,11 +108,6 @@ body {
   border-radius: 10rem;
 }
 
-.btn--follow {
-  background-color: var(--color-white);
-  color: var(--color-dark);
-}
-
 .info {
   display: grid;
   grid-template-columns: auto auto;
