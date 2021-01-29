@@ -4,6 +4,8 @@ from flask import redirect
 from flask import render_template
 from flask import request
 from flask import url_for
+from flask import current_app
+
 
 from app import logic
 from app import myemail
