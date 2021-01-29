@@ -74,7 +74,7 @@ def internal_error(error):
     return render_template('errors/500.html'), 500
 
 
-api = AuthyApiClient(BaseConfig.AUTHY_API_KEY)
+api = AuthyApiClient(current_app._get_current_object().config['AUTHY_API_KEY'])
 
 
 @webapp_bp.route("/phone_verification", methods=["GET", "POST"])
