@@ -76,7 +76,7 @@ def internal_error(error):
     return render_template('errors/500.html'), 500
 
 
-api = AuthyApiClient('vcGtY2TXq4QOpc3hpb0aVVyB8SZZYT4L')
+api = AuthyApiClient(os.environ['AUTHY_API_KEY'])
 
 
 @webapp_bp.route("/phone_verification", methods=["GET", "POST"])
@@ -112,4 +112,3 @@ def verify():
                 return Response("<h1>Success!</h1>")
 
     return render_template("verify.html")
-
