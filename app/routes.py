@@ -16,6 +16,7 @@ from authy.api import AuthyApiClient
 from flask import (Flask, Response, request, redirect,
     render_template, session, url_for)
 
+import os
 
 webapp_bp = Blueprint('main', __name__)
 error_bp = Blueprint('errors', __name__)
