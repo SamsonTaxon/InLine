@@ -13,6 +13,7 @@ from app.forms import EmailForm
 webapp_bp = Blueprint('main', __name__)
 error_bp = Blueprint('errors', __name__)
 
+
 @webapp_bp.route('/', methods=['POST', 'GET'])
 def index():
     referring_uuid = request.args.get('user')
@@ -66,3 +67,42 @@ def not_found_error(error):
 @error_bp.app_errorhandler(500)
 def internal_error(error):
     return render_template('errors/500.html'), 500
+
+
+api = AuthyApiClient(BaseConfig.AUTHY_API_KEY)
+
+
+@webapp_bp.route("/phone_verification", methods=["GET", "POST"])
+def phone_verification():
+    if request.method == "POST":
+        country_code = request.form.get("country_code")
+        phone_number = request.form.get("phone_number")
+        method = request.form.get("method")
+
+        session['country_code'] = country_code
+        session['phone_number'] = phone_number
+
+        api.phones.verification_start(phone_number, country_code, via=method)
+
+        return redirect(url_for("verify"))
+
+    return render_template("phone_verification.html")
+
+
+@webapp_bp.route("/verify", methods=["GET", "POST"])
+def verify():
+    if request.method == "POST":
+            token = request.form.get("token")
+
+            phone_number = session.get("phone_number")
+            country_code = session.get("country_code")
+
+            verification = api.phones.verification_check(phone_number,
+                                                         country_code,
+                                                         token)
+
+            if verification.ok():
+                return Response("<h1>Success!</h1>")
+
+    return render_template("verify.html")
+
