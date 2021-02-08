@@ -5,7 +5,8 @@ from flask import render_template
 from flask import request
 from flask import url_for
 from flask import current_app
-
+from datetime import datetime
+from datetime import timezone
 
 from app import logic
 from app import myemail
@@ -98,7 +99,7 @@ def phone_verification():
 
 
 @webapp_bp.route("/verify", methods=["GET", "POST"])
-def verify():
+def verify(token):
     if request.method == "POST":
             token = request.form.get("token")
 
@@ -108,8 +109,16 @@ def verify():
             verification = api.phones.verification_check(phone_number,
                                                          country_code,
                                                          token)
-
-            if verification.ok():
+            phoneNumber = phone_number
+            if verification.ok(token):
                 return Response("<h1>Success!</h1>")
+                logic.verify_number(token)
+
+                if user is None:
+                    user = logic.create_user_phone(phoneNumber)
+                    user.email_confirmed = True
+                    now = datetime.now(timezone.utc)
+                    user.email_confirmed_on = now
+                    user.save()
 
     return render_template("verify.html")
