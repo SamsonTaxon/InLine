@@ -134,6 +134,8 @@ body {
 }
 
 .share-buttons .fab,.share-buttons .fas{
+  position: center;
+
   padding: 20px;
   font-size: 30px;
   width: 70px;
