@@ -46,6 +46,7 @@
         </div>
 
         <div class="info">
+            <meta http-equiv="refresh" content="5">
             <p>
                 <span>Users ahead of you</span>
                 <span>{{ "{:,.0f}".format(waitlist_position) }}</span>
@@ -61,7 +62,7 @@
         <div class="share-buttons row mt-3 justify-content-center">
     <a class="fas fa-envelope" href="mailto:?subject=Get NLine&body=Quickly!%0A%0AGet NLine.%0A%0APlease join with my link: {{ url }}%26channel=email"></a>
 
-    <a class="fab fa-whatsapp" href="whatsapp://send?text=Get+Mega+Duper+App%3A+{{ url }}%26channel=whatsapp"
+    <a class="fab fa-whatsapp" href="whatsapp://send?text=Get+Nline%3A+{{ url }}%26channel=whatsapp"
       data-share-url="whatsapp://send?text=Get+NLine%3A+{{ url }}%26channel=whatsapp"
       onclick="javascript:window.open(this.getAttribute('data-share-url'), '_blank', 'width=800,height=500');return false;"></a>
 
