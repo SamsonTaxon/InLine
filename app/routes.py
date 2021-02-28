@@ -113,7 +113,7 @@ def verify():
                                                          country_code,
                                                          token)
             phone_num = phone_number
-            if verification.ok(token):
+            if verification.ok():
                 return Response("<h1>Success!</h1>")
                 logic.verify_number(token)
 
