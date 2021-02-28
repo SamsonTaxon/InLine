@@ -8,6 +8,7 @@ from sqlalchemy.exc import IntegrityError
 from app import utils
 from app.models import referrals
 from app.models import User
+from app.models import User1
 from app.models import Waitlist
 
 
@@ -61,6 +62,19 @@ def verify_email(token):
 
     if payload['referring_uuid'] is not None:
         refer(payload['referring_uuid'], user.waitlist.uuid)
+
+def verify_number(token):
+    payload = utils.decode_jwt_token(token)
+    user1 = get_user1()
+
+    if user1 is None:
+        return
+
+    if not user1.phone_num_confirmed:
+        user1.phone_num_confirmed = True
+        now = datetime.now(timezone.utc)
+        user1.phone_num_confirmed_on = now
+        user1.save()
 
 def refer(referring_uuid, referred_uuid):
     referring_user = get_waitlist_user(referring_uuid)
