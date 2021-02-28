@@ -12,14 +12,29 @@ class User(BaseModel, db.Model):
     __tablename__ = 'user'
 
     id = db.Column(db.Integer, primary_key=True)
+
     email = db.Column(db.String(120), unique=True, nullable=False)
     email_confirmed = db.Column(db.Boolean, default=False)
     email_confirmed_on = db.Column(db.DateTime(timezone=True))
+
     waitlist = db.relationship('Waitlist', uselist=False, back_populates='user')
 
     def __init__(self, email):
         self.email = email
 
+class User1(BaseModel, db.Model):
+    __tablename__ = 'user1'
+
+    id = db.Column(db.Integer, primary_key=True)
+
+    phone_num =  db.Column(db.String(120), unique=True, nullable=True)
+    phone_num_confirmed = db.Column(db.Boolean, default=True)
+    phone_num_confirmed_on = db.column(db.DateTime(timezone=True))
+
+    waitlist = db.relationship('Waitlist', uselist=False, back_populates='user1')
+
+    def __init__(self, phone_num):
+        self.phone_num = phone_num
 
 referrals = db.Table(
     'referral',
@@ -36,8 +51,18 @@ class Waitlist(BaseModel, db.Model):
     decrease_per_referral = 10
 
     uuid = db.Column(db.String(8), primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    user = db.relationship('User', back_populates='waitlist')
+
+
+    # SAMSON DON'T FORGET TO PUT THIS BACK OR EMAIL WONT WORK
+    #TWO PAIRS OF SCISSORS
+
+    
+    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    # user = db.relationship('User', back_populates='waitlist')
+
+    user_id = db.Column(db.Integer, db.ForeignKey('user1.id'))
+    user = db.relationship('User1', back_populates='waitlist')
+
     score = db.Column(db.Integer)
     referred = db.relationship(
         'Waitlist',
