@@ -1,8 +1,8 @@
 Hi!
 
-We have to verify your email so your referrals will start moving you up InLine! 
+We have to verify your email so your referrals will start moving you up NLine! 
 
 {{ url_for('main.verify_email', token=token, _external=True) }}
 
 Thanks
-The InLine team
+The NLine team

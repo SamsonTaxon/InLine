@@ -14,10 +14,14 @@ from app.models import Waitlist
 def get_user(user_id):
     return User.query.filter_by(id=user_id).one_or_none()
 
+def get_user1(user_id):
+    return User1.query.filter_by(id=user_id).one_or_none()
 
 def get_user_by_email(email):
     return User.query.filter_by(email=email).one_or_none()
 
+def get_user_by_phone(phone):
+    return User1.query.filter_by(phone_num=phone_num).one_or_none()
 
 def get_waitlist_user(uuid):
     return Waitlist.query.filter_by(uuid=uuid).one_or_none()
@@ -29,6 +33,15 @@ def create_user(email):
     user.save()
 
     waitlist_user = Waitlist(user.id)
+    waitlist_user.save()
+
+    return user
+
+def create_user1(phone_num):
+    user = User1(phone_num=phone_num)
+    user.save()
+
+    waitlist_user = Waitlist(user1.id)
     waitlist_user.save()
 
     return user
@@ -48,34 +61,6 @@ def verify_email(token):
 
     if payload['referring_uuid'] is not None:
         refer(payload['referring_uuid'], user.waitlist.uuid)
-
-#phone number verification
-
-# def create_user_phone(phoneNumber):
-#     user = User(phoneNumber=phoneNumber)
-#     user.save()
-
-#     waitlist_user = Waitlist(user_id)
-#     waitlist_user.save()
-
-#     return user
-
-# def verify_number(token)
-#     payload = utils.decode_jwt_token(token)
-#     user = get_user(payload['user_id'])
-#     if user is None:
-#         return
-
-#     if not user.email_confirmed:
-#         user.email_confirmed = True
-#         now = datetime.now(timezone.utc)
-#         user.email_confirmed_on = now
-#         user.save()
-
-#     if payload['referring_uuid'] is not None:
-#         refer(payload['referring_uuid'], user.waitlist.uuid)
-
-#-------------------------------------------------------------------------
 
 def refer(referring_uuid, referred_uuid):
     referring_user = get_waitlist_user(referring_uuid)
