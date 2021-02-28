@@ -116,5 +116,6 @@ def verify():
             if verification.ok():
                 return Response("<h1>Success!</h1>")
                 logic.verify_number(token)
+                return redirect(url_for('main.waitlist', user1=user1.waitlist.uuid))
 
     return render_template("verify.html")
