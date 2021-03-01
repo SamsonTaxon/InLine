@@ -118,4 +118,4 @@ def verify():
                 logic.verify_number(phone_num)
                 return redirect(url_for('main.waitlist', user1=user1.waitlist.uuid))
 
-    return render_template("verify.html")
+    # return render_template("verify.html")
