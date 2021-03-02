@@ -114,7 +114,7 @@ def verify():
                                                          token)
             phone_num = phone_number
             if verification.ok():
-                return Response("<h1>Success!</h1>")
+                # return Response("<h1>Success!</h1>")
                 # logic.verify_number(phone_num)
                 return redirect(url_for('main.waitlist', user1=user1.waitlist.uuid))
 
