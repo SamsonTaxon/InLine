@@ -57,8 +57,8 @@ class Waitlist(BaseModel, db.Model):
     #TWO PAIRS OF SCISSORS
 
     
-    # user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    # user = db.relationship('User', back_populates='waitlist')
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user = db.relationship('User', back_populates='waitlist')
 
     user_id = db.Column(db.Integer, db.ForeignKey('user1.id'))
     user = db.relationship('User1', back_populates='waitlist')
