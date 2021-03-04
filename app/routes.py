@@ -83,9 +83,6 @@ api = AuthyApiClient(os.environ['AUTHY_API_KEY'])
 
 @webapp_bp.route("/phone_verification", methods=["GET", "POST"])
 def phone_verification():
-
-    referring_uuid = request.args.get('user')
-
     if request.method == "POST":
         country_code = request.form.get("country_code")
         phone_number = request.form.get("phone_number")
@@ -102,7 +99,7 @@ def phone_verification():
 
 
 @webapp_bp.route("/verify", methods=["GET", "POST"])
-def verify():
+def verify(token):
     if request.method == "POST":
             token = request.form.get("token")
 
@@ -112,12 +109,16 @@ def verify():
             verification = api.phones.verification_check(phone_number,
                                                          country_code,
                                                          token)
-            phone_num = phone_number
-            if verification.ok():
-                # return Response("<h1>Success!</h1>")
-                logic.verify_number(phone_num)
-                return redirect(url_for('main.waitlist'))
-                # return redirect(url_for('main.waitlist', user1=user1.waitlist.uuid))
+            phoneNumber = phone_number
+            if verification.ok(token):
+                return Response("<h1>Success!</h1>")
+                logic.verify_number(token)
 
+                if user is None:
+                    user = logic.create_user_phone(phoneNumber)
+                    user.email_confirmed = True
+                    now = datetime.now(timezone.utc)
+                    user.email_confirmed_on = now
+                    user.save()
 
     return render_template("verify.html")
