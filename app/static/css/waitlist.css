@@ -16,7 +16,21 @@ body {
   background-image: url('/static/img/slide-deck.png');
   background-size: cover;
   color: var(--color-white);
-  display: -webkit-box;
+
+
+  display: flex
+  -webkit-display: box
+  -moz-display: box
+  -ms-display: flexbox
+  -webkit-display: flex
+  flex-wrap: wrap
+  justify-content: center
+  align-content: center
+  padding: 8%
+  margin: 0
+
+
+/*  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: center;
@@ -25,7 +39,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background-position: center;
+  background-position: center;*/
 
 }
 
