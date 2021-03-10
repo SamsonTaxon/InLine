@@ -81,44 +81,86 @@ def internal_error(error):
 api = AuthyApiClient(os.environ['AUTHY_API_KEY'])
 
 
-@webapp_bp.route("/phone_verification", methods=["GET", "POST"])
-def phone_verification():
+# @webapp_bp.route("/phone_verification", methods=["GET", "POST"])
+# def phone_verification():
+#     if request.method == "POST":
+#         country_code = request.form.get("country_code")
+#         phone_number = request.form.get("phone_number")
+#         method = request.form.get("method")
+
+#         session['country_code'] = country_code
+#         session['phone_number'] = phone_number
+
+#         api.phones.verification_start(phone_number, country_code, via=method)
+
+#         return redirect(url_for('main.verify'))
+
+#     return render_template("phone_verification.html")
+
+
+# @webapp_bp.route("/verify", methods=["GET", "POST"])
+# def verify(token):
+#     if request.method == "POST":
+#             token = request.form.get("token")
+
+#             phone_number = session.get("phone_number")
+#             country_code = session.get("country_code")
+
+#             verification = api.phones.verification_check(phone_number,
+#                                                          country_code,
+#                                                          token)
+#             phoneNumber = phone_number
+#             if verification.ok(token):
+#                 return Response("<h1>Success!</h1>")
+#                 logic.verify_number(token)
+
+#                 if user is None:
+#                     user = logic.create_user_phone(phoneNumber)
+#                     user.email_confirmed = True
+#                     now = datetime.now(timezone.utc)
+#                     user.email_confirmed_on = now
+#                     user.save()
+
+#     return render_template("verify.html")
+
+@app.route("/signup/<code>", methods=["GET", "POST"])
+def phone_verification(code):
+    ref_code = code
+    # print (ref_code)
     if request.method == "POST":
+
+
         country_code = request.form.get("country_code")
         phone_number = request.form.get("phone_number")
         method = request.form.get("method")
-
         session['country_code'] = country_code
         session['phone_number'] = phone_number
+        session['referral_code'] = ref_code
 
         api.phones.verification_start(phone_number, country_code, via=method)
 
-        return redirect(url_for('main.verify'))
+        return redirect(url_for("verify"))
 
-    return render_template("phone_verification.html")
+    return render_template("phone_verification.html", ref_code=ref_code)
 
 
-@webapp_bp.route("/verify", methods=["GET", "POST"])
-def verify(token):
+@app.route("/verify", methods=["GET", "POST"])
+def verify():
     if request.method == "POST":
             token = request.form.get("token")
 
             phone_number = session.get("phone_number")
             country_code = session.get("country_code")
+            ref_code = session.get('referral_code')
 
             verification = api.phones.verification_check(phone_number,
                                                          country_code,
                                                          token)
-            phoneNumber = phone_number
-            if verification.ok(token):
-                return Response("<h1>Success!</h1>")
-                logic.verify_number(token)
 
-                if user is None:
-                    user = logic.create_user_phone(phoneNumber)
-                    user.email_confirmed = True
-                    now = datetime.now(timezone.utc)
-                    user.email_confirmed_on = now
-                    user.save()
+            if verification.ok():
+                print("Country Code -", country_code)
+                print ("Phone Number -", phone_number)
+                print ("Referral Code -", ref_code)
+                return Response("<h1>Success!</h1>")
 
     return render_template("verify.html")
