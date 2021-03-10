@@ -139,7 +139,7 @@ def phone_verification(code):
 
         api.phones.verification_start(phone_number, country_code, via=method)
 
-        return redirect(url_for("verify"))
+        return redirect(url_for("main.verify"))
 
     return render_template("phone_verification.html", ref_code=ref_code)
 
