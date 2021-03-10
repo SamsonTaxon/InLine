@@ -19,6 +19,8 @@ from flask import (Flask, Response, request, redirect,
 
 import os
 
+import uuid
+
 webapp_bp = Blueprint('main', __name__)
 error_bp = Blueprint('errors', __name__)
 
@@ -123,7 +125,7 @@ api = AuthyApiClient(os.environ['AUTHY_API_KEY'])
 
 #     return render_template("verify.html")
 
-@webapp_bp.route("/signup/<code>", methods=["GET", "POST"])
+@webapp_bp.route("/join/<code>", methods=["GET", "POST"])
 def phone_verification(code):
     ref_code = code
     # print (ref_code)
@@ -161,6 +163,9 @@ def verify():
                 print("Country Code -", country_code)
                 print ("Phone Number -", phone_number)
                 print ("Referral Code -", ref_code)
+
+                print ("New User Code -", str(uuid.uuid4())[:8])
+
                 return Response("<h1>Success!</h1>")
 
     return render_template("verify.html")

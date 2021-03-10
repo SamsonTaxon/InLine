@@ -26,6 +26,9 @@ body {
       -ms-flex-align: center;
           align-items: center;
   background-position: center;
+  margin: 0;
+  overflow: hidden;
+  background: black;
 
 }
 
@@ -70,6 +73,18 @@ body {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
 }
 
 .heading {
