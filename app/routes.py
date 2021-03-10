@@ -123,7 +123,7 @@ api = AuthyApiClient(os.environ['AUTHY_API_KEY'])
 
 #     return render_template("verify.html")
 
-@app.route("/signup/<code>", methods=["GET", "POST"])
+@webapp_bp.route("/signup/<code>", methods=["GET", "POST"])
 def phone_verification(code):
     ref_code = code
     # print (ref_code)
@@ -144,7 +144,7 @@ def phone_verification(code):
     return render_template("phone_verification.html", ref_code=ref_code)
 
 
-@app.route("/verify", methods=["GET", "POST"])
+@webapp_bp.route("/verify", methods=["GET", "POST"])
 def verify():
     if request.method == "POST":
             token = request.form.get("token")
