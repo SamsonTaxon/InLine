@@ -27,6 +27,14 @@ def get_waitlist_user(uuid):
     return Waitlist.query.filter_by(uuid=uuid).one_or_none()
 
 
+
+def get_userid():
+    return Users.query.filter_by(uuid=uuid).one_or_none()
+def get_user_number():
+    return Users.query.filter_by(phone_number=phone_number).one_or_none()
+
+
+
 def create_user(email):
     email = utils.normalize_email(email)
     user = User(email=email)
