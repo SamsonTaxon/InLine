@@ -160,11 +160,19 @@ def verify():
                                                          token)
 
             if verification.ok():
-                print("Country Code -", country_code)
-                print ("Phone Number -", phone_number)
-                print ("Referral Code -", ref_code)
+                # print("Country Code -", country_code)
+                # print ("Phone Number -", phone_number)
+                # print ("Referral Code -", ref_code)
 
-                print ("New User Code -", str(uuid.uuid4())[:8])
+                # print ("New User Code -", str(uuid.uuid4())[:8])
+
+                # user = [(str(uuid.uuid4())[:8]), country_code + phone_number, ref_code]
+
+                uid = (str(uuid.uuid4())[:8])
+                phone_num = str(country_code + phone_number)
+                referred_by = str(ref_code)
+
+                logic.create_user(uid,phone_num,referred_by)
 
                 return Response("<h1>Success!</h1>")
 

@@ -59,3 +59,9 @@ class Waitlist(BaseModel, db.Model):
 
     def set_initial_score(self):
         self.score = self.initial_score + db.session.query(Waitlist).count() + 1
+
+class Users(BaseModel, db.Model):
+    __tablename__ = 'users'
+    uuid = Column(db.String(8))
+    phone_number = Column(db.String(120))
+    referred_by = Column(db.String(8))

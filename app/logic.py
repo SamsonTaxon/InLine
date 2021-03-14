@@ -84,3 +84,15 @@ def get_completed_referrals(uuid):
     waitlist_user = get_waitlist_user(uuid)
     return waitlist_user.referred.filter(
         referrals.c.referring == waitlist_user.uuid).count()
+
+def create_user(uid,phone_num,referred_by):
+    uuid = uid
+    uuid = Users(uuid=uuid)
+    uuid.save()
+
+    phone_number = phone_num
+    phone_number = Users(phone_number=phone_number)
+    phone_number.save()
+
+    referred_by = Users(referred_by=referred_by)
+    referred_by.save()
