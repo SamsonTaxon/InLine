@@ -62,6 +62,6 @@ class Waitlist(BaseModel, db.Model):
 
 class Users(BaseModel, db.Model):
     __tablename__ = 'users'
-    uuid = db.Column(db.String(8))
+    uuid = db.Column(db.String(8), primary_key=True)
     phone_number = db.Column(db.String(120))
     referred_by = db.Column(db.String(8))
