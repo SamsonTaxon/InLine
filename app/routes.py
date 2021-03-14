@@ -172,7 +172,7 @@ def verify():
                 phone_num = str(country_code + phone_number)
                 referred_by = str(ref_code)
 
-                logic.create_user(uid,phone_num,referred_by)
+                logic.make_user(uid,phone_num,referred_by)
 
                 return Response("<h1>Success!</h1>")
 
