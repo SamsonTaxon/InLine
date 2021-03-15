@@ -20,6 +20,8 @@ from flask import (Flask, Response, request, redirect,
 import os
 
 import uuid
+from app import gsheet
+
 
 webapp_bp = Blueprint('main', __name__)
 error_bp = Blueprint('errors', __name__)
@@ -181,13 +183,13 @@ def verify():
 
                 # print ("New User Code -", str(uuid.uuid4())[:8])
 
-                user_data = [(str(uuid.uuid4())[:8]), country_code + phone_number, ref_code]
+                # user_data = [(str(uuid.uuid4())[:8]), country_code + phone_number, ref_code]
 
-                # uid = (str(uuid.uuid4())[:8])
-                # phone_num = str(country_code + phone_number)
-                # referred_by = str(ref_code)
+                uid = (str(uuid.uuid4())[:8])
+                phone_num = str(country_code + phone_number)
+                referred_by = str(ref_code)
 
-                logic.make_user(user_data)
+                gsheet.create_user(uid,phone_num,referred_by)
 
                 return Response("<h1>Success!</h1>")
 
