@@ -69,6 +69,21 @@ def waitlist():
             waitlist_position=waitlist_position,
             completed_referrals=completed_referrals)
 
+@webapp_bp.route('/line/')
+def line():
+    uuid = request.args.get('user')
+    waitlist_user = logic.get_userid(uuid)
+    if waitlist_user is None:
+        return abort(404)
+    else:
+        waitlist_position = logic.get_waitlist_position(uuid)
+        # completed_referrals = logic.get_completed_referrals(uuid)
+        completed_referrals = "dont forget to deal with this samson"
+        return render_template(
+            'line.html',
+            uuid=uuid,
+            waitlist_position=waitlist_position,
+            completed_referrals=completed_referrals)
 
 @error_bp.app_errorhandler(404)
 def not_found_error(error):

@@ -23,9 +23,11 @@ def get_user_by_email(email):
 def get_user_by_phone(phone):
     return User1.query.filter_by(phone_num=phone_num).one_or_none()
 
-def get_waitlist_user(uuid):
-    return Waitlist.query.filter_by(uuid=uuid).one_or_none()
+# def get_waitlist_user(uuid):
+#     return Waitlist.query.filter_by(uuid=uuid).one_or_none()
 
+def get_waitlist_user(uuid):
+    return Users.query.filter_by(uuid=uuid).one_or_none()
 
 
 def get_userid():
@@ -81,12 +83,17 @@ def refer(referring_uuid, referred_uuid):
         pass
 
 
+# def get_waitlist_position(uuid):
+#     waitlist_user = get_waitlist_user(uuid)
+#     score = waitlist_user.score
+#     users_ahead = Waitlist.query.filter(Waitlist.score <= score).count()
+#     return max(score, users_ahead)
+
 def get_waitlist_position(uuid):
     waitlist_user = get_waitlist_user(uuid)
     score = waitlist_user.score
-    users_ahead = Waitlist.query.filter(Waitlist.score <= score).count()
+    users_ahead = Users.query.filter(Users.score <= score).count()
     return max(score, users_ahead)
-
 
 def get_completed_referrals(uuid):
     waitlist_user = get_waitlist_user(uuid)
