@@ -102,7 +102,8 @@ def get_completed_referrals(uuid):
 
 def make_user(user_data):
     user_data = user_data
-
+    #looks like this
+    # user_data = [(str(uuid.uuid4())[:8]), country_code + phone_number, ref_code]
     print (user_data)
     # phone_number = phone_num
     # phone_number = Users(phone_number=phone_number)
