@@ -181,13 +181,13 @@ def verify():
 
                 # print ("New User Code -", str(uuid.uuid4())[:8])
 
-                # user = [(str(uuid.uuid4())[:8]), country_code + phone_number, ref_code]
+                user_data = [(str(uuid.uuid4())[:8]), country_code + phone_number, ref_code]
 
-                uid = (str(uuid.uuid4())[:8])
-                phone_num = str(country_code + phone_number)
-                referred_by = str(ref_code)
+                # uid = (str(uuid.uuid4())[:8])
+                # phone_num = str(country_code + phone_number)
+                # referred_by = str(ref_code)
 
-                logic.make_user(phone_num,referred_by,uid)
+                logic.make_user(user_data)
 
                 return Response("<h1>Success!</h1>")
 
