@@ -27,32 +27,8 @@
             <span class="heading--sub">You're NLine</span>
         </h1>
 
-        <div class="heading">
-         {% if config['DEBUG'] %}
-            <a href="{{ url }}">{{ url }}</a></p>
-          {% else %}
-            <u>{{ url }}</u></p>
-         {% endif %}
-            </a>
-
         </div>
 
-        <div class="info">
-
-            <p>
-
-<!--                 <meta http-equiv="refresh" content="5">
- -->            <span>Users ahead of you</span>
-                <span>{{ "{:,.0f}".format(waitlist_position) }}</span>
-            </p>
-
-            <p>
-                <span>Referrals</span>
-                <span>{{ completed_referrals }}</span>
-                
-            </p>
-
-        </div>
 
         <div class="share-buttons row mt-3 justify-content-center">
     <a class="fas fa-envelope" href="mailto:?subject=Get NLine&body=Quickly!%0A%0AGet NLine.%0A%0APlease join with my link: {{ url }}%26channel=email"></a>
