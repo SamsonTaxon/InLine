@@ -77,9 +77,7 @@ def line():
 
     return render_template(
         'line.html',
-        uuid=uuid,
-        waitlist_position=waitlist_position,
-        completed_referrals=completed_referrals)
+        uuid=uuid)
 
 @error_bp.app_errorhandler(404)
 def not_found_error(error):
