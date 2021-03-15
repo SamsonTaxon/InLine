@@ -1,35 +1,4 @@
-<!-- {% extends "base.html" %}
-
-{% block content %}
-
-<html>
-
-    <link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/authy-form-helpers/2.3/form.authy.min.css" data-turbolinks-track="reload" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/authy-form-helpers/2.3/form.authy.min.js" data-turbolinks-track="reload"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-
-  <head>
-
-    <title>Welcome</title>
-
-  </head>
-
-  <body>
-    <div class="card">
-      <h1>NLine is Nvite only</h1>
-
-    <div>
-        <label>Find a referral link to get NLine</label>
-    </div>
-
-    </div>
-  </body>
-
-</html>
-
-{% endblock %} -->
-
-<!-- {% extends "base.html" %}
+{% extends "base.html" %}
 
 {% block content %}
 
@@ -53,17 +22,4 @@
     </form>
   </div>
 </div>
-{% endblock %} -->
-
-{% extends "base.html" %}
-
-{% block content %}
-<div class="row justify-content-center">
-    <div class="col-md-5">
-        <h1>NLine is Nvite only</h1>
-        <p>Find a referral link to get Nline</p>
-        <p><a href="{{ url_for('main.index') }}">Home</a></p>
-    </div>
-</div> 
-    
 {% endblock %}
