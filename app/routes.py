@@ -74,7 +74,7 @@ def waitlist():
 @webapp_bp.route('/line/')
 def line():
     uuid = request.args.get('user')
-
+    uuid=str(uuid)
     return render_template(
         'line.html',
         uuid=uuid)
