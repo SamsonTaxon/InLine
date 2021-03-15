@@ -191,6 +191,8 @@ def verify():
 
                 gsheet.create_user(uid,phone_num,referred_by)
 
-                return render_template("line.html", uuid=uid)
+                return redirect(url_for('main.line', uuid=uid))
+
+                # return render_template("line.html", uuid=uid)
 
     return render_template("verify.html")
