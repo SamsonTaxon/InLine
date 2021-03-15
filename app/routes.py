@@ -27,7 +27,7 @@ error_bp = Blueprint('errors', __name__)
 
 @webapp_bp.route('/')
 def welcome():
-    return redirect(url_for('main.welcome'))
+    return render_template("welcome.html")
 
 # @webapp_bp.route('/', methods=['POST', 'GET'])
 # def index():
