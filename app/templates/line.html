@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% if config['DEBUG'] %}
+  {% set ROOT = 'http://localhost:5000' %}
+{% else %}
+  {% set ROOT = config['PROJECT_URL'] %}
+{% endif %}
+
+
+{% set url = ROOT + url_for('main.index') + '?user=' + uuid %}
+<link rel="stylesheet" href='/static/css/style.css' />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> NLine</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="card">
+
+        <div class="card__user-pic">
+            <img src="/static/img/profile-picture.png" alt="user pic">
+        </div>
+
+        <h1 class="heading">
+            <span class="heading--sup">Username</span>
+            <span class="heading--sub">You're NLine</span>
+        </h1>
+
+        <div class="heading">
+         {% if config['DEBUG'] %}
+            <a href="{{ url }}">{{ url }}</a></p>
+          {% else %}
+            <u>{{ url }}</u></p>
+         {% endif %}
+            </a>
+
+        </div>
+
+        <div class="info">
+
+            <p>
+
+<!--                 <meta http-equiv="refresh" content="5">
+ -->            <span>Users ahead of you</span>
+                <span>{{ "{:,.0f}".format(waitlist_position) }}</span>
+            </p>
+
+            <p>
+                <span>Referrals</span>
+                <span>{{ completed_referrals }}</span>
+                
+            </p>
+
+        </div>
+
+        <div class="share-buttons row mt-3 justify-content-center">
+    <a class="fas fa-envelope" href="mailto:?subject=Get NLine&body=Quickly!%0A%0AGet NLine.%0A%0APlease join with my link: {{ url }}%26channel=email"></a>
+
+    <a class="fab fa-whatsapp" href="whatsapp://send?text=Get+Nline%3A+{{ url }}%26channel=whatsapp"
+      data-share-url="whatsapp://send?text=Get+NLine%3A+{{ url }}%26channel=whatsapp"
+      onclick="javascript:window.open(this.getAttribute('data-share-url'), '_blank', 'width=800,height=500');return false;"></a>
+
+    <a class="fab fa-twitter" href="https://twitter.com/intent/tweet?url={{ url }}%26channel=twitter&text=Get+NLine%3A&amp;source=webclient"
+      data-share-url="https://twitter.com/intent/tweet?url={{ url }}%26channel=twitter&text=Get+NLine%3A&amp;source=webclient"
+      onclick="javascript:window.open(this.getAttribute('data-share-url'), '_blank', 'width=800,height=500');return false;"></a>
+        </div>
+
+</body>
+
+{% endblock %}
