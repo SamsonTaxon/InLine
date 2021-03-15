@@ -9,7 +9,7 @@ from app import utils
 from app.models import referrals
 from app.models import User
 from app.models import Waitlist
-
+from app.models import Users
 
 def get_user(user_id):
     return User.query.filter_by(id=user_id).one_or_none()
