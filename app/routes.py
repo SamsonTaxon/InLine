@@ -24,31 +24,31 @@ import uuid
 webapp_bp = Blueprint('main', __name__)
 error_bp = Blueprint('errors', __name__)
 
-@webapp_bp.route('/')
-def index():
-    return render_template('index.html')
-
-# @webapp_bp.route('/', methods=['POST', 'GET'])
+# @webapp_bp.route('/')
 # def index():
-#     referring_uuid = request.args.get('user')
-#     form = EmailForm()
-#     if request.method == 'POST':
-#         if form.validate():
-#             email = utils.normalize_email(form.email.data)
-#             user = logic.get_user_by_email(email)
+#     return render_template('index.html')
 
-#             if user is None:
-#                 user = logic.create_user(email)
+@webapp_bp.route('/', methods=['POST', 'GET'])
+def index():
+    referring_uuid = request.args.get('user')
+    form = EmailForm()
+    if request.method == 'POST':
+        if form.validate():
+            email = utils.normalize_email(form.email.data)
+            user = logic.get_user_by_email(email)
 
-#                 myemail.send_verification_email(
-#                     user.id, user.email,
-#                     referring_uuid=referring_uuid)
+            if user is None:
+                user = logic.create_user(email)
 
-#             return redirect(url_for('main.waitlist', user=user.waitlist.uuid))
+                myemail.send_verification_email(
+                    user.id, user.email,
+                    referring_uuid=referring_uuid)
 
-#     elif request.method == 'GET':
-#         return render_template(
-#             'index.html', form=form, referring_uuid=referring_uuid)
+            return redirect(url_for('main.waitlist', user=user.waitlist.uuid))
+
+    elif request.method == 'GET':
+        return render_template(
+            'index.html', form=form, referring_uuid=referring_uuid)
 
 
 @webapp_bp.route('/verify_email/<token>/')
