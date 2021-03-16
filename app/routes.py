@@ -48,6 +48,8 @@ def line(rcode):
                 'line.html',
                 uuid=uuid, r_code=r_code)
     else: 
+        #samson make sure u check if this uuid is in the database
+        #otherwise any 8 chars will pass u there wont be any data
         uuid = str(rcode)
         r_code = uuid
         return render_template(
