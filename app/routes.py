@@ -75,9 +75,10 @@ def waitlist():
 def line():
     uuid = request.args.get('user')
     uuid=str(uuid)
+    test_unit = str("make this useful")
     return render_template(
         'line.html',
-        uuid=uuid)
+        uuid=uuid, test_unit=test_unit)
 
 @error_bp.app_errorhandler(404)
 def not_found_error(error):
