@@ -72,13 +72,14 @@ def waitlist():
             completed_referrals=completed_referrals)
 
 @webapp_bp.route('/line/')
-def line():
+def line(uuid, x):
     uuid = request.args.get('user')
     uuid=str(uuid)
     referral_code = str(uuid)
+    x = str(x)
     return render_template(
         'line.html',
-        uuid=uuid, referral_code=referral_code)
+        uuid=uuid, referral_code=referral_code, x=x)
 
 @error_bp.app_errorhandler(404)
 def not_found_error(error):
@@ -183,8 +184,8 @@ def verify():
                 referred_by = str(ref_code)
 
                 gsheet.create_user(uid,phone_num,referred_by)
-
-                return redirect(url_for('main.line', uuid=uid))
+                x = 'x'
+                return redirect(url_for('main.line', uuid=uid, x=x))
 
                 # return render_template("line.html", uuid=uid)
 
