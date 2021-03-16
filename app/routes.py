@@ -73,13 +73,13 @@ def waitlist():
 
 @webapp_bp.route('/line/')
 def line():
-    uuid = request.args.get('user')
-    uuid=str(uuid)
-    x = uuid
-    test_unit = str(x)
+    uid = request.args.get('user')
+    uid=str(uuid)
+
+    r_code = uid
     return render_template(
         'line.html',
-        uuid=uuid, test_unit=test_unit)
+        uuid=uuid, r_code=r_code)
 
 @error_bp.app_errorhandler(404)
 def not_found_error(error):
