@@ -34,8 +34,9 @@ def index():
 
 @webapp_bp.route('/line/')
 def line():
-    # uuid = request.args.get('user')
-    uuid=str(uuid)
+        # uuid = request.args.get('user')
+    user_data = session.get['user_data']
+    uuid= str(user_data[0])
 
     r_code = uuid
     return render_template(
@@ -102,7 +103,7 @@ def verify():
                 referred_by = str(ref_code)
 
                 gsheet.create_user(uid,phone_num,referred_by)
-
+                session['user_data'] = [uid, phone_num, referred_by]
                 return redirect(url_for('main.line'))
 
     return render_template("verify.html")
