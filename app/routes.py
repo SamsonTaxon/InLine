@@ -72,8 +72,8 @@ def waitlist():
             completed_referrals=completed_referrals)
 
 @webapp_bp.route('/line/')
-def line():
-    uuid = request.args.get('user')
+def line(uuid):
+    # uuid = request.args.get('user')
     uuid=str(uuid)
 
     r_code = uuid
