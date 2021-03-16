@@ -35,15 +35,15 @@ def index():
 @webapp_bp.route('/line/<rcode>', defaults={'rcode': None}, methods=["GET", "POST"])
 @webapp_bp.route('/line/<rcode>', methods=["GET", "POST"])
 def line(rcode):
-    if rcode == none:
-    # if request.method == "POST":
-        # uuid = request.args.get('user')
-        uuid = str(session.get('uuid'))
-        r_code = uuid
-    else:
+    print (rcode)
+    # if rcode == none:
 
-        r_code = rcode
-        
+    #     uuid = str(session.get('uuid'))
+    #     r_code = uuid
+    # else:
+
+    #     r_code = rcode
+
     return render_template(
         'line.html',
         uuid=uuid, r_code=r_code)
