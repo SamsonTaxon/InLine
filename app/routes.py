@@ -32,18 +32,18 @@ def index():
     return render_template('index.html')
 
 
-@webapp_bp.route('/', methods=['POST', 'GET'])
-def secure_url():
-    uuid = str(session.get('uuid'))
-    return redirect(url_for('main.line', r_code=uuid))
-
-@webapp_bp.route('/line/')
-def line():
+@webapp_bp.route('/line/<rcode>', defaults={'rcode': None}, methods=["GET", "POST"])
+@webapp_bp.route('/line/<rcode>', methods=["GET", "POST"])
+def line(rcode):
+    if rcode == none:
     # if request.method == "POST":
         # uuid = request.args.get('user')
-    uuid = str(session.get('uuid'))
+        uuid = str(session.get('uuid'))
+        r_code = uuid
+    else:
 
-    r_code = uuid
+        r_code = rcode
+        
     return render_template(
         'line.html',
         uuid=uuid, r_code=r_code)
