@@ -32,16 +32,16 @@ def index():
     return render_template('index.html')
 
 
-@webapp_bp.route('/line/', methods=["GET", "POST"])
+@webapp_bp.route('/line/')
 def line():
-    if request.method == "POST":
+    # if request.method == "POST":
         # uuid = request.args.get('user')
-        uuid = str(session.get('uuid'))
+    uuid = str(session.get('uuid'))
 
-        r_code = uuid
-        return render_template(
-            'line.html',
-            uuid=uuid, r_code=r_code)
+    r_code = uuid
+    return render_template(
+        'line.html',
+        uuid=uuid, r_code=r_code)
 
 @error_bp.app_errorhandler(404)
 def not_found_error(error):
