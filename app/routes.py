@@ -29,25 +29,26 @@ error_bp = Blueprint('errors', __name__)
 
 @webapp_bp.route('/', methods=['POST', 'GET'])
 def index():
-    referring_uuid = request.args.get('user')
-    form = EmailForm()
-    if request.method == 'POST':
-        if form.validate():
-            email = utils.normalize_email(form.email.data)
-            user = logic.get_user_by_email(email)
+    # referring_uuid = request.args.get('user')
+    # form = EmailForm()
+    # if request.method == 'POST':
+    #     if form.validate():
+    #         email = utils.normalize_email(form.email.data)
+    #         user = logic.get_user_by_email(email)
 
-            if user is None:
-                user = logic.create_user(email)
+    #         if user is None:
+    #             user = logic.create_user(email)
 
-                myemail.send_verification_email(
-                    user.id, user.email,
-                    referring_uuid=referring_uuid)
+    #             myemail.send_verification_email(
+    #                 user.id, user.email,
+    #                 referring_uuid=referring_uuid)
 
-            return redirect(url_for('main.waitlist', user=user.waitlist.uuid))
+    #         return redirect(url_for('main.waitlist', user=user.waitlist.uuid))
 
-    elif request.method == 'GET':
-        return render_template(
-            'index.html', form=form, referring_uuid=referring_uuid)
+    # elif request.method == 'GET':
+    #     return render_template(
+    #         'index.html', form=form, referring_uuid=referring_uuid)
+    return render_template('index.html')
 
 
 @webapp_bp.route('/verify_email/<token>/')
@@ -72,7 +73,7 @@ def waitlist():
             completed_referrals=completed_referrals)
 
 @webapp_bp.route('/line/')
-def line(uuid):
+def line():
     # uuid = request.args.get('user')
     uuid=str(uuid)
 
@@ -185,7 +186,7 @@ def verify():
 
                 gsheet.create_user(uid,phone_num,referred_by)
 
-                return redirect(url_for('main.line', uuid=uid))
+                return redirect(url_for('main.line'))
 
                 # return render_template("line.html", uuid=uid)
 
