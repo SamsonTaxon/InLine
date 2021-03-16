@@ -32,6 +32,11 @@ def index():
     return render_template('index.html')
 
 
+@webapp_bp.route('/', methods=['POST', 'GET'])
+def secure_url():
+    uuid = str(session.get('uuid'))
+    return redirect(url_for('main.line', r_code=uuid))
+
 @webapp_bp.route('/line/')
 def line():
     # if request.method == "POST":
