@@ -34,19 +34,19 @@ def index():
 
 @webapp_bp.route('/line/', defaults={'rcode': None}, methods=["GET", "POST"])
 @webapp_bp.route('/line/<rcode>', methods=["GET", "POST"])
-
 def line(rcode):
     if rcode == None or len(rcode) < 8:
-    # if request.method == "POST":
-        # uuid = request.args.get('user')
         uuid = str(session.get('uuid'))
+
         if uuid == None or len(uuid) < 8:
             return redirect(url_for("main.index"))
+
         else:
             r_code = uuid
             return render_template(
                 'line.html',
                 uuid=uuid, r_code=r_code)
+
     else: 
         #samson make sure u check if this uuid is in the database
         #otherwise any 8 chars will pass u there wont be any data
