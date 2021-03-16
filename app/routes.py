@@ -32,16 +32,16 @@ def index():
     return render_template('index.html')
 
 
-@webapp_bp.route('/line/')
+@webapp_bp.route('/line/', methods=["GET", "POST"])
 def line():
+    if request.method == "POST":
         # uuid = request.args.get('user')
-    user_data = session.get['user_data']
-    uuid= str(user_data[0])
+        uuid = str(session.get('uuid'))
 
-    r_code = uuid
-    return render_template(
-        'line.html',
-        uuid=uuid, r_code=r_code)
+        r_code = uuid
+        return render_template(
+            'line.html',
+            uuid=uuid, r_code=r_code)
 
 @error_bp.app_errorhandler(404)
 def not_found_error(error):
@@ -103,7 +103,7 @@ def verify():
                 referred_by = str(ref_code)
 
                 gsheet.create_user(uid,phone_num,referred_by)
-                session['user_data'] = [uid, phone_num, referred_by]
+                session['uuid'] = uid
                 return redirect(url_for('main.line'))
 
     return render_template("verify.html")
