@@ -39,9 +39,9 @@ def line():
     uuid = str(session.get('uuid'))
 
     r_code = uuid
-    return render_template(
+    return redirect(url_for(
         'line.html',
-        uuid=uuid, r_code=r_code)
+        uuid=uuid, r_code=r_code))
 
 @error_bp.app_errorhandler(404)
 def not_found_error(error):
