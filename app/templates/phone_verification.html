@@ -6,6 +6,9 @@
   <head>
     <title>Phone Verification</title>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
     <link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/authy-form-helpers/2.3/form.authy.min.css" data-turbolinks-track="reload" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/authy-form-helpers/2.3/form.authy.min.js" data-turbolinks-track="reload"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
@@ -14,25 +17,32 @@
 
   <body>
     <div class="card">
-    <h1>Verify your phone number</h1>
+    <h1 class="heading">Join</h1>
 
     <form action="/join/{{ ref_code }}" accept-charset="UTF-8" method="post">
-      <div>
-        <label for="authy-countries">Country code:</label>
-        <select name="country_code" id="authy-countries" data-show-as="number"></select>
-      </div>
-      <div>
-        <label for="phone_number">Phone number:</label>
-        <input type="tel" name="phone_number" id="phone_number" />
-      </div>
-      <div>
-        <p>Verification method</p>
+<div class="form-group row">
+    
+    <div class="col-4 mr-0">
+        <select class="btn" name="country_code" id="authy-countries" data-show-as="number"></select>
+    </div>
+    
+    <div class="col-2 mx-0">
+        <input type="tel" name="phone_number" id="phone_number"/>
+    </div>
+    
+</div>
+
+      <div class="heading">
+        <p class="heading--sub">Verification method</p>
         <label for="method_sms">SMS: </label>
-        <input type="radio" name="method" id="method_sms" value="sms" />
+        <input type="radio" name="method" id="method_sms" value="sms" checked/>
         <label for="method_call">Call: </label>
         <input type="radio" name="method" id="method_call" value="call" />
       </div>
-      <button name="button" type="submit">Verify</button>
+
+        <div class="text-center">
+      <button class="btn" name="button" type="submit">Verify</button>
+        </div>
     </form>
   </div>
   </body>
