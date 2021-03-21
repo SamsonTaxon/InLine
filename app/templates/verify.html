@@ -7,10 +7,15 @@
     <link rel="stylesheet" media="all" href="https://cdnjs.cloudflare.com/ajax/libs/authy-form-helpers/2.3/form.authy.min.css" data-turbolinks-track="reload" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/authy-form-helpers/2.3/form.authy.min.js" data-turbolinks-track="reload"></script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    <link rel="stylesheet" href='/static/css/style.css' />
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" type="text/css">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <head>
 
-    <title>Phone Verification</title>
+    <title class="heading">Phone Verification</title>
 
   </head>
 
@@ -20,12 +25,14 @@
 
       <form action="/verify" accept-charset="UTF-8" method="post">
 
-    <div>
-        <label>Enter the code you were sent:</label>
-        <input name="token" id="token"></select>
+    <div class="heading">
+        <label class="heading--sup">Enter the code you were sent:</label>
+        <input class="heading--sub" name="token" id="token"></select>
     </div>
 
-      <button name="button" type="submit">Verify</button>
+      <div class="text-center">
+      <button class="btn" name="button" type="submit">Verify</button>
+        </div>
       </form>
 
     </div>
