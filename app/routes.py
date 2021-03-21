@@ -37,7 +37,7 @@ def index():
 def line(rcode):
     if rcode == None or len(rcode) < 8:
         uuid = str(session.get('uuid'))
-
+        username = str(session.get('username'))
         if uuid == None or len(uuid) < 8:
             return redirect(url_for("main.index"))
 
@@ -45,7 +45,7 @@ def line(rcode):
             r_code = uuid
             return render_template(
                 'line.html',
-                uuid=uuid, r_code=r_code)
+                uuid=uuid, r_code=r_code, username=username)
 
     else: 
         #samson make sure u check if this uuid is in the database
@@ -74,14 +74,14 @@ def phone_verification(code):
     # print (ref_code)
     if request.method == "POST":
 
-
+        username = request.form.get("Username")
         country_code = request.form.get("country_code")
         phone_number = request.form.get("phone_number")
         method = request.form.get("method")
         session['country_code'] = country_code
         session['phone_number'] = phone_number
         session['referral_code'] = ref_code
-
+        session['username'] = username
         api.phones.verification_start(phone_number, country_code, via=method)
 
         return redirect(url_for("main.verify"))
@@ -94,6 +94,7 @@ def verify():
     if request.method == "POST":
             token = request.form.get("token")
 
+            Username = session.get("username")
             phone_number = session.get("phone_number")
             country_code = session.get("country_code")
             ref_code = session.get('referral_code')
@@ -114,9 +115,11 @@ def verify():
                 uid = (str(uuid.uuid4())[:8])
                 phone_num = str(country_code + phone_number)
                 referred_by = str(ref_code)
+                username = str(Username)
 
-                gsheet.create_user(uid,phone_num,referred_by)
+                gsheet.create_user(uid,phone_num,referred_by,username)
                 session['uuid'] = uid
+                session['username'] = username
                 return redirect(url_for('main.line'))
 
     return render_template("verify.html")

@@ -18,11 +18,11 @@ sheet = client.open("NLine1").sheet1
 
 #hi
 
-def create_user(uid,phone_num,referred_by):
+def create_user(uid,phone_num,referred_by,username):
 
 
     num_of_users = (sheet.col_values(1))[-1]
-    row = [int(num_of_users) + 1, uid, phone_num, referred_by]
+    row = [int(num_of_users) + 1, uid, phone_num, referred_by, username]
 
     index = (int(num_of_users) + 2)
     sheet.insert_row(row, index)
