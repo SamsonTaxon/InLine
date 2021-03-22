@@ -43,6 +43,8 @@ def line(rcode):
             return redirect(url_for("main.index"))
 
         else:
+            uuid = str(session.get('uuid'))
+            print (uuid)
             r_code = uuid
             x = str(rcode)
             score = gsheet.update(x)
