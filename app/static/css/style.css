@@ -70,6 +70,13 @@ body {
   border-radius: 8px;
 }
 
+.logo_head {
+  position: relative;
+  width: 18rem;
+  padding: 2rem 1rem;
+  padding-top: 4rem;
+}
+
 .card__logo-pic {
   position: absolute;
   top: 0;
