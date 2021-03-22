@@ -43,9 +43,10 @@ def line(rcode):
 
         else:
             r_code = uuid
+            score = gsheet.update(r_code)
             return render_template(
                 'line.html',
-                uuid=uuid, r_code=r_code, username=username)
+                uuid=uuid, r_code=r_code, username=username, score=score)
 
     else: 
         #samson make sure u check if this uuid is in the database
