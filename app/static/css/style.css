@@ -71,14 +71,15 @@ body {
 }
 
 .logo_head {
-  position: absolute;
-  left: 50%; 
+  position: relative;
+  width: 18rem;
+  padding: 2rem 1rem;
   padding-top: 4rem;
-
-  -webkit-transform: translate(-50%, -50%);
-          transform: translate(-50%, -50%);
-  height: 5rem;
-    -webkit-box-orient: vertical;
+  
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
