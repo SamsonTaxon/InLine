@@ -14,7 +14,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" type="text/css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
+<script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,6 +34,10 @@
             <span class="heading--sup">{{ username }}</span>
             <span class="heading--sub">You're NLine</span>
         </h1>
+
+<button class="btn" data-clipboard-text="abc123">
+    Copy to clipboard
+</button>
 
         <div class="heading">
             <a>n-line.xyz/join/{{ r_code }}</a>
