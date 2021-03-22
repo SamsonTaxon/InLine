@@ -74,8 +74,8 @@ body {
 
 .card__logo-pic {
   position: absolute;
-  top: 2;
-  left: 25%;
+  top: 0;
+  left: 50%;
 
 
 }
@@ -92,10 +92,7 @@ body {
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  width: 5rem;
-  height: 5rem;
-  border-radius: 50%;
-  overflow: hidden;
+
   border: 3px solid var(--color-white);
   -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
           box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
