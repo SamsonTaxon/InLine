@@ -35,9 +35,19 @@
             <span class="heading--sub">You're NLine</span>
         </h1>
 
-<button class="btn" data-clipboard-text="abc123">
-    Copy to clipboard
-</button>
+<button onclick="copyToClipboard()">Copy Link</button>
+
+<script>
+function copyToClipboard(text) {
+var inputc = document.body.appendChild(document.createElement("input"));
+inputc.value = window.location.href;
+inputc.focus();
+inputc.select();
+document.execCommand('copy');
+inputc.parentNode.removeChild(inputc);
+alert("URL Copied.");
+}
+</script>
 
         <div class="heading">
             <a>n-line.xyz/join/{{ r_code }}</a>
@@ -72,7 +82,6 @@
       data-share-url="https://twitter.com/intent/tweet?url={{ url }}%26channel=twitter&text=Get+NLine%3A&amp;source=webclient"
       onclick="javascript:window.open(this.getAttribute('data-share-url'), '_blank', 'width=800,height=500');return false;"></a>
         </div>
-<script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
 </body>
 
 {% endblock %}
