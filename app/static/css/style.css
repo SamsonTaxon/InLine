@@ -89,8 +89,10 @@ body {
 .card__user-pic {
   position: absolute;
   top: 0;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
   -webkit-transform: translate(-50%, 5%);
 
 
