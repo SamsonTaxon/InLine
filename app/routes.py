@@ -47,7 +47,7 @@ def line(rcode):
             print (uuid)
             r_code = uuid
             print(r_code)
-            x = rcode
+            x = r_code
             print (x)
             score = gsheet.update(x)
             print (score)
