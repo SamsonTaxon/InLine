@@ -38,20 +38,19 @@ def line(rcode):
     if rcode == None or len(rcode) < 8:
         uuid = str(session.get('uuid'))
         username = str(session.get('username'))
-        print (uuid)
+
         if uuid == None or len(uuid) < 8:
             return redirect(url_for("main.index"))
 
         else:
             uuid = str(session.get('uuid'))
-            print (uuid)
+
             r_code = uuid
-            print(r_code)
+
             x = r_code
-            print (x)
+
             score = gsheet.update(x)
-            print (score)
-            print (rcode)
+
             return render_template(
                 'line.html',
                 uuid=uuid, r_code=r_code, username=username, score=score)
@@ -62,9 +61,11 @@ def line(rcode):
         uuid = str(rcode)
         r_code = uuid
         username = str(session.get('username'))
+        x = r_code
+        score = gsheet.update(x)
         return render_template(
             'line.html',
-            uuid=uuid, r_code=r_code, username=username)
+            uuid=uuid, r_code=r_code, username=username, score=score)
 
 @error_bp.app_errorhandler(404)
 def not_found_error(error):
