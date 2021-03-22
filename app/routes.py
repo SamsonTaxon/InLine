@@ -49,7 +49,7 @@ def line(rcode):
             print (rcode)
             return render_template(
                 'line.html',
-                uuid=uuid, r_code=r_code, username=username, score=score)
+                uuid=uuid, r_code=r_code, score=score)
 
     else: 
         #samson make sure u check if this uuid is in the database
