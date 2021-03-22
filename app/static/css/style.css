@@ -70,7 +70,13 @@ body {
   border-radius: 8px;
 }
 
-
+.card__logo-pic-line {
+   position: absolute;
+  top: 10;
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+}
 
 .card__logo-pic {
    position: absolute;
