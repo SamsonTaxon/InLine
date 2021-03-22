@@ -81,7 +81,7 @@ body {
 
 .card__logo-pic {
    position: absolute;
-  top: 0;
+  top: -5px;
   margin: auto;
   width: 90%;
   padding: 10px;
@@ -131,6 +131,13 @@ body {
 .heading {
   margin-bottom: 1.5rem;
   text-align: center;
+}
+
+.invisitext {
+  opacity: 0; 
+  display: block;
+  letter-spacing: 1px;
+  font-size: 1.6rem;
 }
 
 .heading--sup {
