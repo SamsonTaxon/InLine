@@ -90,11 +90,11 @@ body {
 
 .card__logo-pic {
   position: absolute;
-  top: 0;
+  top: -3;
   left: 50%;
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
-  width: 5rem;
+  width: 15rem;
   height: 5rem;
 
   overflow: hidden;
