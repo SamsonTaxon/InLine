@@ -27,8 +27,8 @@ def create_user(uid,phone_num,referred_by,username):
     index = (int(num_of_users) + 2)
     sheet.insert_row(row, index)
 
-def update(ref):
+def update(x):
     values_list = sheet.col_values(4)
-    score = values_list.count(ref)
+    score = values_list.count(x)
 
     return score

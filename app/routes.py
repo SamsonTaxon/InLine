@@ -43,7 +43,8 @@ def line(rcode):
 
         else:
             r_code = uuid
-            score = gsheet.update(r_code)
+            x = str(rcode)
+            score = gsheet.update(x)
             return render_template(
                 'line.html',
                 uuid=uuid, r_code=r_code, username=username, score=score)
