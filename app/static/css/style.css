@@ -89,8 +89,8 @@ body {
 .card__user-pic {
   position: absolute;
   top: 0;
-  left: 50%;
-  -webkit-transform: translate(-50%, 0%);
+
+  -webkit-transform: translate(-50%, 5%);
 
 
   -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
