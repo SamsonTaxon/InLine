@@ -46,7 +46,9 @@ def line(rcode):
             uuid = str(session.get('uuid'))
             print (uuid)
             r_code = uuid
-            x = str(rcode)
+            print(r_code)
+            x = rcode
+            print (x)
             score = gsheet.update(x)
             print (score)
             print (rcode)
