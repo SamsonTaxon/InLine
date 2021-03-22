@@ -35,12 +35,12 @@
             <span class="heading--sub">You're NLine</span>
         </h1>
 
-<button onclick="copyToClipboard()">Copy Link</button>
+<button class="btn" onclick="copyToClipboard()">n-line.xyz/join/{{ r_code }}</button>
 
 <script>
 function copyToClipboard(text) {
 var inputc = document.body.appendChild(document.createElement("input"));
-inputc.value = window.location.href;
+inputc.value = ("n-line.xyz/join/{{ r_code }}");
 inputc.focus();
 inputc.select();
 document.execCommand('copy');
