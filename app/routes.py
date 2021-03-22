@@ -38,6 +38,7 @@ def line(rcode):
     if rcode == None or len(rcode) < 8:
         uuid = str(session.get('uuid'))
         username = str(session.get('username'))
+        print (uuid)
         if uuid == None or len(uuid) < 8:
             return redirect(url_for("main.index"))
 
@@ -49,16 +50,17 @@ def line(rcode):
             print (rcode)
             return render_template(
                 'line.html',
-                uuid=uuid, r_code=r_code, score=score)
+                uuid=uuid, r_code=r_code, username=username, score=score)
 
     else: 
         #samson make sure u check if this uuid is in the database
         #otherwise any 8 chars will pass u there wont be any data
         uuid = str(rcode)
         r_code = uuid
+        username = str(session.get('username'))
         return render_template(
             'line.html',
-            uuid=uuid, r_code=r_code)
+            uuid=uuid, r_code=r_code, username=username)
 
 @error_bp.app_errorhandler(404)
 def not_found_error(error):
