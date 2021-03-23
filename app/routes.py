@@ -8,9 +8,9 @@ from flask import current_app
 from datetime import datetime
 from datetime import timezone
 
-from app import logic
-from app import myemail
-from app import utils
+# from app import logic
+# from app import myemail
+# from app import utils
 from app.forms import EmailForm
 
 from authy.api import AuthyApiClient
