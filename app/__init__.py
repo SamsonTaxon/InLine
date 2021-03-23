@@ -7,7 +7,7 @@ def create_app():
     app = Flask(__name__)
     app.config.from_object(BaseConfig)
 
-    register_extensions(app)
+    # register_extensions(app)
     register_blueprints(app)
 
     return app
