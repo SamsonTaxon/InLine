@@ -31,4 +31,8 @@ def update(x):
     values_list = sheet.col_values(4)
     score = values_list.count(x)
 
+    uuid_list = sheet.col_values(2)
+    uuid_index = uuid_list.index(x)
+    sheet.update((str('F' + str(uuid_index + 1))), score)
+
     return score
