@@ -7,6 +7,7 @@ from flask import url_for
 from flask import current_app
 from datetime import datetime
 from datetime import timezone
+from flask import Flask, render_template
 
 # from app import logic
 from app import myemail
@@ -16,6 +17,8 @@ from app.forms import EmailForm
 from authy.api import AuthyApiClient
 from flask import (Flask, Response, request, redirect,
     render_template, session, url_for)
+
+from flask_bootstrap import Bootstrap
 
 import os
 
