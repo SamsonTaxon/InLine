@@ -29,9 +29,25 @@ from app import gsheet
 webapp_bp = Blueprint('main', __name__)
 error_bp = Blueprint('errors', __name__)
 
+class PhoneForm(FlaskForm):
+    phone = StringField('Phone', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+
+    def validate_phone(self, phone):
+        try:
+            p = phonenumbers.parse(phone.data)
+            if not phonenumbers.is_valid_number(p):
+                raise ValueError()
+        except (phonenumbers.phonenumberutil.NumberParseException, ValueError):
+            raise ValidationError('Invalid phone number')
+
 @webapp_bp.route('/', methods=['POST', 'GET'])
 def index():
-    return render_template('index.html')
+    form = PhoneForm()
+    if form.validate_on_submit():
+        session['phone'] = form.phone.data
+        return redirect(url_for('show_phone'))
+    return render_template('index.html', form=form)
 
 
 @webapp_bp.route('/line/', defaults={'rcode': None}, methods=["GET", "POST"])
