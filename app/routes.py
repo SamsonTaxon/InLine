@@ -26,7 +26,7 @@ from app import gsheet
 webapp_bp = Blueprint('main', __name__)
 error_bp = Blueprint('errors', __name__)
 
-
+Bootstrap(webapp_bp)
 @webapp_bp.route('/', methods=['POST', 'GET'])
 def index():
     return render_template('index.html')
