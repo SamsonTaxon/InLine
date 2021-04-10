@@ -20,6 +20,13 @@ from flask import (Flask, Response, request, redirect,
 
 from flask_bootstrap import Bootstrap
 
+from flask import Flask, render_template, session, redirect, url_for
+from flask_bootstrap import Bootstrap
+from flask_wtf import FlaskForm
+import phonenumbers
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired, ValidationError
+
 import os
 
 import uuid
