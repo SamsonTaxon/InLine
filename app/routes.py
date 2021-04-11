@@ -12,7 +12,7 @@ from flask import Flask, render_template
 # from app import logic
 from app import myemail
 from app import utils
-from app.forms import EmailForm
+# from app.forms import EmailForm
 
 from authy.api import AuthyApiClient
 from flask import (Flask, Response, request, redirect,
