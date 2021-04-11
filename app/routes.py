@@ -116,6 +116,8 @@ def verify():
             Username = session.get("username")
             phone_number = session.get("phone_number")
             country_code = session.get("country_code")
+            print(phone_number)
+            print(country_code)
             ref_code = session.get('referral_code')
 
             verification = api.phones.verification_check(phone_number,
