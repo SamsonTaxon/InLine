@@ -109,7 +109,7 @@ def phone_verification(code):
 
         return redirect(url_for("main.verify"))
 
-    return render_template("phone_verification.html", ref_code=ref_code)
+    return render_template("phone_verification.html", ref_code=ref_code, form=form)
 
 
 @webapp_bp.route("/verify", methods=["GET", "POST"])
