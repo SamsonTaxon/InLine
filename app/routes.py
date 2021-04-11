@@ -93,6 +93,7 @@ api = AuthyApiClient(os.environ['AUTHY_API_KEY'])
 
 @webapp_bp.route("/join/<code>", methods=["GET", "POST"])
 def phone_verification(code):
+    form = PhoneForm()
     ref_code = code
     # print (ref_code)
     if request.method == "POST":
