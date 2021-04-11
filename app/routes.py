@@ -40,11 +40,8 @@ error_bp = Blueprint('errors', __name__)
 
 @webapp_bp.route('/', methods=['POST', 'GET'])
 def index():
-    form = PhoneForm()
-    if form.validate_on_submit():
-        session['phone'] = form.phone.data
-        return redirect(url_for('show_phone'))
-    return render_template('index.html', form=form)
+
+    return render_template('index.html')
 
 
 @webapp_bp.route('/line/', defaults={'rcode': None}, methods=["GET", "POST"])
