@@ -7,27 +7,15 @@ from flask import url_for
 from flask import current_app
 from datetime import datetime
 from datetime import timezone
-from flask import Flask, render_template
 
 # from app import logic
 from app import myemail
 from app import utils
-# from app.forms import EmailForm
+from app.forms import EmailForm
 
 from authy.api import AuthyApiClient
 from flask import (Flask, Response, request, redirect,
     render_template, session, url_for)
-
-from flask_bootstrap import Bootstrap
-
-from flask import Flask, render_template, session, redirect, url_for
-from flask_bootstrap import Bootstrap
-from flask_wtf import FlaskForm
-import phonenumbers
-from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired, ValidationError
-
-from app.forms import PhoneForm
 
 import os
 
@@ -38,9 +26,9 @@ from app import gsheet
 webapp_bp = Blueprint('main', __name__)
 error_bp = Blueprint('errors', __name__)
 
+
 @webapp_bp.route('/', methods=['POST', 'GET'])
 def index():
-
     return render_template('index.html')
 
 
@@ -93,7 +81,6 @@ api = AuthyApiClient(os.environ['AUTHY_API_KEY'])
 
 @webapp_bp.route("/join/<code>", methods=["GET", "POST"])
 def phone_verification(code):
-    form = PhoneForm()
     ref_code = code
     # print (ref_code)
     if request.method == "POST":
@@ -110,7 +97,7 @@ def phone_verification(code):
 
         return redirect(url_for("main.verify"))
 
-    return render_template("phone_verification.html", ref_code=ref_code, form=form)
+    return render_template("phone_verification.html", ref_code=ref_code)
 
 
 @webapp_bp.route("/verify", methods=["GET", "POST"])
