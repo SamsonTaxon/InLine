@@ -37,5 +37,5 @@ def update(x):
 
     rank = sheet.acell('G'+ str(uuid_index + 1)).value
 
-    current_data = [score, rank]
+    current_data = [score, int(rank)]
     return current_data 

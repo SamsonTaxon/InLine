@@ -65,10 +65,13 @@ def line(rcode):
         r_code = uuid
         username = str(session.get('username'))
         x = r_code
-        score = gsheet.update(x)
+        current_data = gsheet.update(x)
+
+        score = current_data[0]
+        rank = current_data[1]
         return render_template(
             'line.html',
-            uuid=uuid, r_code=r_code, username=username, score=score)
+            uuid=uuid, r_code=r_code, username=username, score=score, rank=rank)
 
 @error_bp.app_errorhandler(404)
 def not_found_error(error):
