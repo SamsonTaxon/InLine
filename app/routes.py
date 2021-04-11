@@ -99,6 +99,8 @@ def phone_verification(code):
         session['phone_number'] = phone_number
         session['referral_code'] = ref_code
         session['username'] = username
+        print (country_code)
+        print(phone_number)
         api.phones.verification_start(phone_number, country_code, via=method)
 
         return redirect(url_for("main.verify"))
