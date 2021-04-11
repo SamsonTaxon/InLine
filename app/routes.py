@@ -118,6 +118,7 @@ def verify():
             country_code = session.get("country_code")
             print(phone_number)
             print(country_code)
+            print(token)
             ref_code = session.get('referral_code')
 
             verification = api.phones.verification_check(phone_number,
