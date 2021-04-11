@@ -33,7 +33,12 @@ def update(x):
 
     uuid_list = sheet.col_values(2)
     uuid_index = uuid_list.index(x)
+
+    rank_formula = ('=RANK(F' + str(uuid_index + 1) + ',F:F)')
+
     sheet.update((str('F' + str(uuid_index + 1))), score)
+
+    sheet.update_acell((str('G' + str(uuid_index + 1))), rank_formula)
 
     rank = sheet.acell('G'+ str(uuid_index + 1)).value
 
