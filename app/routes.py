@@ -154,12 +154,13 @@ def login():
         country_code = request.form.get("country_code")
         phone_number = request.form.get("phone_number")
         method = request.form.get("method")
-        session['country_code'] = country_code
-        session['phone_number'] = phone_number
-        session['referral_code'] = ref_code
-        session['username'] = username
 
-
+        phone_num = country_code+phone_number
+        user_list = gsheet.get_user(phone_num)
+        '''id  uuid    phone_number    referred_by Username    Score   Rank'''
+        session['uuid'] = user_list[1]
+        session['username'] = user_list[4]
+        
         return redirect(url_for("main.line"))
 
     return render_template("login.html")

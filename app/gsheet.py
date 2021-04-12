@@ -44,3 +44,14 @@ def update(x):
 
     current_data = [score, int(rank)]
     return current_data 
+
+def get_user(phone_num):
+    phone_num = phone_num
+    phone_num_list = data_sheet.col_values(3)
+    phone_num_index = phone_num_list.index(phone_num)
+
+    logged_in_user_list = data_sheet.row_values(phone_num_index+1)
+
+    return logged_in_user_list
+
+
