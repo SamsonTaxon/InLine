@@ -145,3 +145,21 @@ def verify():
                 return redirect(url_for('main.line'))
 
     return render_template("verify.html")
+
+@webapp_bp.route("/login", methods=["GET", "POST"])
+def phone_verification():
+    if request.method == "POST":
+
+        username = request.form.get("Username")
+        country_code = request.form.get("country_code")
+        phone_number = request.form.get("phone_number")
+        method = request.form.get("method")
+        session['country_code'] = country_code
+        session['phone_number'] = phone_number
+        session['referral_code'] = ref_code
+        session['username'] = username
+
+
+        return redirect(url_for("main.line"))
+
+    return render_template("login.html")
