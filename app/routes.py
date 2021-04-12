@@ -167,6 +167,6 @@ def login():
         session['uuid'] = uid
         session['username'] = username
 
-        return redirect(url_for('main.line'))
+        return redirect(url_for('main.index'))
 
     return render_template("login.html")
