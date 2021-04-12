@@ -161,7 +161,7 @@ def login():
 
         uid = str(user_list[1])
         username = str(user_list[4])
-
+        print (uid)
         session['uuid'] = uid
         session['username'] = username
 
