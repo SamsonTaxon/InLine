@@ -40,7 +40,7 @@ def line(rcode):
         username = str(session.get('username'))
 
         if uuid == None or len(uuid) < 8:
-            print('its getting here samson')
+
             return redirect(url_for("main.index"))
 
         else:
@@ -150,7 +150,7 @@ def verify():
 @webapp_bp.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
-
+        print('its getting here samson')
         username = request.form.get("Username")
         country_code = request.form.get("country_code")
         phone_number = request.form.get("phone_number")
