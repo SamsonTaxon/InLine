@@ -151,11 +151,11 @@ def verify():
 def login():
     print ('here')
     if request.method == "POST":
+        result = request.form
         print('its getting here samson')
         username = request.form.get("Username")
         country_code = request.form.get("country_code")
         phone_number = request.form.get("phone_number")
-        method = request.form.get("method")
 
         phone_num = country_code+phone_number
         user_list = gsheet.get_user(phone_num)
