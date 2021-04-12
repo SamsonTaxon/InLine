@@ -40,6 +40,7 @@ def line(rcode):
         username = str(session.get('username'))
 
         if uuid == None or len(uuid) < 8:
+            print('its getting here samson')
             return redirect(url_for("main.index"))
 
         else:
