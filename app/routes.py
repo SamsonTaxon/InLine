@@ -158,9 +158,13 @@ def login():
         phone_num = country_code+phone_number
         user_list = gsheet.get_user(phone_num)
         '''id  uuid    phone_number    referred_by Username    Score   Rank'''
-        session['uuid'] = user_list[1]
-        session['username'] = user_list[4]
-        
-        return redirect(url_for("main.line"))
+
+        uid = str(user_list[1])
+        username = str(user_list[4])
+
+        session['uuid'] = uid
+        session['username'] = username
+
+        return redirect(url_for('main.line'))
 
     return render_template("login.html")
