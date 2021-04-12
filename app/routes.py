@@ -149,7 +149,8 @@ def verify():
 
 @webapp_bp.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == "GET":
+    print ('here')
+    if request.method == "POST":
         print('its getting here samson')
         username = request.form.get("Username")
         country_code = request.form.get("country_code")
