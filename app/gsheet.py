@@ -53,5 +53,10 @@ def get_user(phone_num):
     logged_in_user_list = sheet.row_values(phone_num_index+1)
 
     return logged_in_user_list
+def get_unique_info():
+    phone_num_list = sheet.col_values(3)
+    username_list = sheet.col_values(5)
 
+    unique_info = [phone_num_list, username_list]
+    return unique_info
 
