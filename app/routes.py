@@ -96,7 +96,7 @@ def phone_verification(code):
         country_code = request.form.get("country_code")
         phone_number = request.form.get("phone_number")
         method = request.form.get("method")
-        if (str(username) not in (item for sublist in gsheet.get_unique_info() for item in sublist)) or (str(username) == none) or (str(username) == ''):
+        if str(username) not in (item for sublist in gsheet.get_unique_info() for item in sublist):
             session['country_code'] = country_code
             session['phone_number'] = phone_number
             session['referral_code'] = ref_code
