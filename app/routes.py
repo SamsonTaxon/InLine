@@ -17,6 +17,8 @@ from authy.api import AuthyApiClient
 from flask import (Flask, Response, request, redirect,
     render_template, session, url_for)
 
+import random
+
 import os
 
 import uuid
@@ -33,8 +35,10 @@ def index():
 
 
 @webapp_bp.route('/line/', defaults={'rcode': None}, methods=["GET", "POST"])
+
 @webapp_bp.route('/line/<rcode>', methods=["GET", "POST"])
 def line(rcode):
+    rand = request.args.get('rand')
     if rcode == None or len(rcode) < 8:
         uuid = str(session.get('uuid'))
         username = str(session.get('username'))
@@ -148,7 +152,8 @@ def verify():
                 gsheet.create_user(uid,phone_num,referred_by,username)
                 session['uuid'] = uid
                 session['username'] = username
-                return redirect(url_for('main.line'))
+                rand = randint(0,99999999)
+                return redirect(url_for('main.line', rand=))
 
     return render_template("verify.html")
 
