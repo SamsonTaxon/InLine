@@ -153,7 +153,7 @@ def verify():
                 session['uuid'] = uid
                 session['username'] = username
                 rand = randint(0,99999999)
-                return redirect(url_for('main.line', rand=))
+                return redirect(url_for('main.line', rand=rand))
 
     return render_template("verify.html")
 
