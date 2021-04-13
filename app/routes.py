@@ -152,7 +152,7 @@ def verify():
                 gsheet.create_user(uid,phone_num,referred_by,username)
                 session['uuid'] = uid
                 session['username'] = username
-                rand = randint(0,99999999)
+                rand = random.randint(0,99999999)
                 return redirect(url_for('main.line', rand=rand))
 
     return render_template("verify.html")
