@@ -16,3 +16,5 @@ class BaseConfig:
     AUTHY_API_KEY = os.environ['AUTHY_API_KEY']
     GOOGLE_CREDENTIALS = os.environ['GOOGLE_CREDENTIALS']
     GOOGLE_APPLICATION_CREDENTIALS = os.environ['GOOGLE_APPLICATION_CREDENTIALS']
+    stripe_secret_key = os.environ['stripe_secret_key']
+    stripe_publishable_key = os.environ['stripe_publishable_key']

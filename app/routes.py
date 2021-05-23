@@ -7,6 +7,7 @@ from flask import url_for
 from flask import current_app
 from datetime import datetime
 from datetime import timezone
+import stripe
 
 # from app import logic
 from app import myemail
@@ -22,6 +23,13 @@ import os
 import uuid
 from app import gsheet
 
+
+stripe_keys = {
+    'secret_key': os.environ['stripe_secret_key'],
+    'publishable_key': os.environ['stripe_publishable_key']
+}
+
+stripe.api_key = stripe_keys['secret_key']
 
 webapp_bp = Blueprint('main', __name__)
 error_bp = Blueprint('errors', __name__)
@@ -175,3 +183,26 @@ def login():
         return redirect(url_for('main.line'))
 
     return render_template("login.html")
+
+@webapp_bp.route('/pay')
+def pay():
+    return render_template('pay.html', key=stripe_keys['publishable_key'])
+
+@app.route('/charge', methods=['POST'])
+def charge():
+    # Amount in cents
+    amount = 100
+
+    customer = stripe.Customer.create(
+        email='customer@example.com',
+        card=request.form['stripeToken']
+    )
+
+    charge = stripe.Charge.create(
+        customer=customer.id,
+        amount=amount,
+        currency='usd',
+        description='Flask Charge'
+    )
+
+    return render_template('charge.html', amount=amount)
