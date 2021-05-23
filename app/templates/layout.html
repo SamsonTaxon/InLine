@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Flask-Stripe</title>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+      body {padding-top: 40px;padding-bottom: 40px;background-color: #eee;}
+    </style>
+    <script type="text/javascript" src="https://js.stripe.com/v1/"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      Stripe.setPublishableKey('{{ key }}');
+      var stripeResponseHandler = function(status, response) {
+        var $form = $('#payment-form');
+        if (response.error) {
+          $form.find('.payment-errors').text(response.error.message);
+          $form.find('button').prop('disabled', false);
+        } else {
+          $form.append($('<input type="hidden" name="stripeToken" />').val(token));
+          $form.get(0).submit();
+        }
+      };
+
+      jQuery(function($) {
+        $('#payment-form').submit(function(e) {
+          var $form = $(this);
+          $form.find('button').prop('disabled', true);
+
+          Stripe.createToken($form, stripeResponseHandler);
+          return false;
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      {% block content %}{% endblock %}
+    </div> 
+  </body>
+</html>
