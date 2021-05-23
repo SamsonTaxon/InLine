@@ -188,7 +188,7 @@ def login():
 def pay():
     return render_template('pay.html', key=stripe_keys['publishable_key'])
 
-@app.route('/charge', methods=['POST'])
+@webapp_bp.route('/charge', methods=['POST'])
 def charge():
     # Amount in cents
     amount = 100
