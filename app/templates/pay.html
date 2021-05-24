@@ -1,5 +1,6 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
 
+{% block content %}
 <link rel="stylesheet" href='/static/css/style.css' />
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous" type="text/css">
@@ -43,9 +44,13 @@
     });
   </script>
 </head>
+
 <body>
+<div class="body_stuff">
+<div class="card">
+
   <div class="container">
-  <h1>Charge $10 with Stripe</h1>
+  <h1>Charge $1 with Stripe</h1>
 
   <form action="/charge" method="POST" id="payment-form">
     <span class="payment-errors"></span>
@@ -76,5 +81,8 @@
     <button type="submit" class="btn btn-primary">Submit</button>
   </form>
   </div>
+</div>
+</div>
 </body>
 </html>
+{% endblock %}
