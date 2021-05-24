@@ -156,7 +156,7 @@ def verify():
                 gsheet.create_user(uid,phone_num,referred_by,username)
                 session['uuid'] = uid
                 session['username'] = username
-                return redirect(url_for('main.line'))
+                return redirect(url_for('main.pay'))
 
     return render_template("verify.html")
 
@@ -194,7 +194,7 @@ def charge():
     amount = 100
 
     customer = stripe.Customer.create(
-        email='customer@example.com',
+        name=session.get('username'),
         card=request.form['stripeToken']
     )
 
@@ -205,4 +205,5 @@ def charge():
         description='Flask Charge'
     )
 
-    return render_template('charge.html', amount=amount)
+    return redirect(url_for('main.line'))
+    # return render_template('charge.html', amount=amount)
